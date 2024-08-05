@@ -1,0 +1,121 @@
+
+
+┌────────────────────────────────────────────
+│ 	실전 스프링 웹 개발
+│ 	::: 2024-05-14
+└────────────────────────────────────────────
+
+	[1장 : 스프링 개발환경]
+	
+	# 개발환경 
+	
+	Tool : Spring Tool Suite(STS) 3.9.15(eclipse 4.16)
+	Java : JDK 1.8
+	Oracle : Oracle 11g XE
+	Server : Apache-Tomcat 8.5.x
+	Mybatis : 3.5.x
+	SpringFramework : 5.3.25
+	
+	** eogvFramework(전자정부프레임워크)와 비교했을 때, 
+		현재 버전이 실행환경 4.1.0에서 사용하는 버전과 차이가 없다.
+	** 많은 STS 버전들 중 3.9.15버전이 Plugins를 설치하거나 설정을 진행할 때
+		에러 발생 확률이 가장 적음
+		
+	[2장 : 프로젝트 생성]
+	
+	# 실전 스프링 웹 개발 준비
+	
+	1. STS 설치 후 실행
+	2. STS 설정
+	   : window > preferences
+	   	 - 인코딩 (UTF-8) 및 폰트 설정
+	   	 - Java 설정
+	   		> Installed JREs > JDS 1.8 설정
+	   	 - Server 설정
+	   		> Runtime Environment > Apache-Tomcat 설정
+	3. 스프링 프로젝트 만들기
+	   - Spring Legacy Project 생성
+	    > 프로젝트 명 : Spring2Project
+	    > 패키지 : kr.or.ddit (프로젝트 base package)
+	    > template : Spring MVC Project
+	    
+	    # MVC 프로젝트 구성 확인
+	    - pom.xml : 메이븐 프로젝트 빌드 파일
+	    - src/main/java : 자바 소스 경로
+	    - src/main/resources : 리소스 파일 경로
+	    - src/.../WEB-INF/web.xml : 웹 컨테이너 설정 파일
+	    - src/.../WEB-INF/spring/root-context.xml : 스프링 설정파일
+	    - src/.../WEB-INF/appServlet/servlet-context.xml : 스프링 웹 설정 파일
+	    - src/.../WEB-INF/views : 뷰 파일 경로
+	
+	4. 웹 서버 설정
+	   - overview : timeout 120s / port 80 설정
+	   - module : path '/' 설정
+	   
+	5. 프로젝트 환경설정       
+	   - Deployment Assembly : Maven Dependency 여부 확인
+	   - Java Build Path : [3대장 확인] JDK, Server, Maven
+	   - Java Compiler : compliance level 1.8 확인
+	   - Project Facets  : Dynamic Web Module 3.1, Java 1.8설정, Runtimes탭 내 Tomcat 설정
+	
+	6. pom.xml 설정
+	   - java-version : 1.8
+	   - org.springframework-version : 5.3.25
+	   - javax.servlet : 3.1.0
+	   - plugins source 1.8 / plugin target 1.8
+	   
+	   	# Maven 적용
+	   	- 프로젝트 우클릭 > Run As > Maven Clean 및 Maven Build 
+	   	(Goals : compile)
+	   	
+	7. 웹 컨테이너 설정(web.xml)
+	   - version : 3.1
+	   - schemaLocation : web-app_3_1
+	
+	8. 인코딩 필터 적용
+	   - 웹 컨테이너 설정 (web.xml)
+	   - encodingFilter 설정
+	
+	9. 로그 레벨 설정(log4j.xml)
+	   - root level : debug
+	
+	10. 프로젝트 실행
+	   - HomeController, home.jsp
+	   - http://localhost 실행
+	   - home.jsp 내 Hello World 표시 확인 완료            	     		   	
+	
+	[ 3장 : 컨트롤러 요청 매핑]
+	- package : kr.or.ddit.controller.board
+	- class : BoardController
+	
+	[ 4장 : 컨트롤러 응답]
+	- package : kr.or.ddit
+	- class : HomeController, RestHomeController
+
+	[ 5장 : 컨트롤러 요청 처리]
+	- package : kr.or.ddit.controller.member
+	- class : MemberController, AjaxMemberController, AjaxMemberFileController
+
+	[ 6장 : 컨트롤러 요청 처리]
+	- package : kr.or.ddit.controller.model
+	- class : ModelMemberController, ModelAttributeMemberController,
+			  RedirectAttributeMemberController
+			  
+	       		   	
+	       		   	
+	       		   	
+	       		   	
+	       		   	
+	       		   	
+	       		   	
+	       		   	
+	       		   	
+	       		   	
+	       		   	
+	       		   	
+	       		   	
+	       		   	
+	       		   	
+	       		   	
+	       		   	
+	       		   	

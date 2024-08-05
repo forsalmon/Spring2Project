@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.or.ddit.mapper.IItemMapper3">
+	<insert id="create" parameterType="item3">
+		insert into item3(
+			item_id, item_name, description
+		)values(
+			seq_item3.nextval, #{itemName}, #{description}
+		)
+	</insert>
+	
+	<insert id="addAttach" parameterType="String">
+		insert into item3_attach(
+			fullname, item_id, regdate
+		)values(
+			#{fileName}, seq_item3.currval, sysdate
+		)
+	</insert>
+	
+	<select id="list" resultType="item3">
+		select 
+			item_id, item_name, description
+		from item3
+		order by item_id desc
+	</select>
+	
+	<select id="read" parameterType="int" resultType="item3">
+		select 
+			item_id, item_name, description
+		from item3
+		where item_id = #{itemId}
+	</select>
+	
+	<select id="getAttach" parameterType="int" resultType="String">
+		select fullname
+		from item3_attach
+		where item_id = #{itemId}
+	</select>
+
+	<update id="modify" parameterType="item3">
+		update item3
+		set
+			item_name = #{itemName},
+			description = #{description}
+		where item_id = #{itemId}	
+	</update>
+	
+	<delete id="deleteAttach" parameterType="int">
+		delete from item3_attach
+		where item_id = #{itemId}	
+	</delete>
+
+	
+<!-- 
+	public void replaceAttach(String fileName, int itemId); 
+	=> 타입이 다른 두 개의 파라미터를 처리하기 위해
+	   Mapper에서 @param에 이름을 줘서 가져옴
+-->
+	<insert id="replaceAttach">
+		insert into item3_attach(
+			fullname, item_id, regdate
+		)values(
+			#{fullName}, #{itemId}, sysdate 
+		)
+	</insert>
+	
+	<delete id="remove" parameterType="int">
+		delete from item3
+		where item_id = #{itemId}
+	</delete>
+
+</mapper>  

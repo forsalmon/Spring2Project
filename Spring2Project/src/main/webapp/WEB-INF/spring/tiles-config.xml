@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<!-- 배경지 설정 : put-attribute에 common으로 들어가는 페이지정보 설정-->
+	<definition name="mainTemplate" template="/WEB-INF/views/mainTemplate.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
+	</definition>
+
+	<!-- notice/a/b => notice/*/* => {1}/{2} -->
+	<!-- definition extends에는 배경지로 사용할 페이지 설정 -->
+	<definition name="notice/*" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/noticeboard/{1}.jsp"></put-attribute>
+	</definition>
+
+	<definition name="loginTemplate" template="/WEB-INF/views/loginTemplate.jsp">
+	</definition>
+
+	<definition name="conn/*" extends="loginTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/noticeboard/{1}.jsp"></put-attribute>
+	</definition>
+	
+</tiles-definitions>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.or.ddit.mapper.IProfileMapper">
+
+	<select id="profileIdCheck" parameterType="String" resultType="String">
+		select
+			mem_id
+		from noticemember
+		where mem_id = #{memId}	
+	</select>
+	
+	<!-- int profileUpdate(NoticeMemberVO memberVO); -->
+	<update id="profileUpdate" parameterType="noticeMemberVO">
+		update noticemember
+		set
+			mem_pw = #{memPw}, 
+			mem_name = #{memName}, 
+			mem_gender = #{memGender}, 
+			mem_email = #{memEmail}, 
+			mem_phone = #{memPhone}, 
+			mem_postcode = #{memPostcode}, 
+			mem_address1 = #{memAddress1}, 
+			mem_address2 = #{memAddress2}, 
+			mem_profileimg = #{memProfileimg}, 
+			mem_regdate = sysdate
+		where mem_no = #{memNo}	
+	</update>
+	
+	<select id="selectMember" parameterType="String" resultType="noticeMemberVO">
+		select 	
+			mem_no, mem_id, mem_pw, mem_name, mem_gender, mem_email,
+			mem_phone, mem_postcode, mem_address1, mem_address2, mem_agree, mem_profileimg, mem_regdate, enabled
+		from noticemember
+		where mem_id = #{memId}	
+	</select>
+	<!-- <select id="getPicture" parameterType="String" resultType="String">
+		select                                                                                                                            
+		from noticemember
+		where mem_id = #{memId}	
+	</select> -->
+</mapper>  
